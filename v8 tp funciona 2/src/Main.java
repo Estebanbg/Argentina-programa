@@ -14,8 +14,8 @@ public class Main {
 
         leerArchivo(archivo, partido1, partido2);
         
-         System.out.println(partido1.toString());
-         System.out.println(partido2.toString());
+        System.out.println(partido1.toString());
+        System.out.println(partido2.toString());
 
 
 
