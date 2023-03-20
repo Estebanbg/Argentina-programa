@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+
 public class Main {
 
     public static void main(String[] args) {
@@ -16,8 +17,6 @@ public class Main {
 
         System.out.println(partido1.toString());
         System.out.println(partido2.toString());
-
-
 
 
     }
@@ -37,17 +36,22 @@ public class Main {
 
             // Leemos la segunda linea y guardamos los datos en diferentes variables
             linea = br.readLine();
+
             String[] texto = linea.split(separador);
-            partido1 = new Partido(texto[0], texto[3], Integer.parseInt(texto[1]), Integer.parseInt(texto[2]));
 
+            partido1.setEquipo1(texto[0]);
+            partido1.setGolesEquipo1(Integer.parseInt(texto[1]));
+            partido1.setGolesEquipo2(Integer.parseInt(texto[2]));
+            partido1.setEquipo2(texto[3]);
 
-            // Leemos la tercera linea
             linea = br.readLine();
+
             texto = linea.split(separador);
-            partido2 = new Partido(texto[0], texto[3], Integer.parseInt(texto[1]), Integer.parseInt(texto[2]));
 
-
-
+            partido2.setEquipo1(texto[0]);
+            partido2.setGolesEquipo1(Integer.parseInt(texto[1]));
+            partido2.setGolesEquipo2(Integer.parseInt(texto[2]));
+            partido2.setEquipo2(texto[3]);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -63,6 +67,7 @@ public class Main {
             }
         }
     }
+
 }
 
 class Partido {
@@ -77,16 +82,14 @@ class Partido {
         this.golesEquipo1 = 0;
         this.golesEquipo2 = 0;
     }
+
+
     public Partido(String equipo1, String equipo2, int golesEquipo1, int golesEquipo2) {
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.golesEquipo1 = golesEquipo1;
         this.golesEquipo2 = golesEquipo2;
     }
-
-
-
-
 
     public String getEquipo1() {
         return equipo1;
@@ -120,7 +123,7 @@ class Partido {
         this.equipo2 = equipo2;
     }
 
-    @Override
+
     public String toString() {
         return "Equipo 1: " + equipo1 + "\n" +
                 "Goles Equipo 1: " + golesEquipo1 + "\n" +
