@@ -14,8 +14,7 @@ public class Main {
 
         leerArchivo(archivo, partido1, partido2);
 
-        System.out.println(partido1.toString());
-        System.out.println(partido2.toString());
+
 
 
     }
@@ -44,6 +43,8 @@ public class Main {
             texto = linea.split(separador);
             partido2 = new Partido(texto[0], texto[3], Integer.parseInt(texto[1]), Integer.parseInt(texto[2]));
 
+            System.out.println(partido1.toString());
+            System.out.println(partido2.toString());
 
 
         } catch (FileNotFoundException e) {
