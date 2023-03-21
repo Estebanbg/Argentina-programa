@@ -8,26 +8,44 @@ public class Main {
 
     public static void main(String[] args) {
 
+        String equipoGanador1 = ".";
+        String equipoGanador2 = ".";
+
         String archivo = ("C:\\Users\\esteb\\Escritorio\\Argentina Programa\\Trabajo practico\\v6 tp\\resultados.csv");
         Partido partido1 = new Partido();
         Partido partido2 = new Partido();
 
 
-        leerArchivo(archivo, partido1, partido2);
+        String [] resultado = leerArchivo(archivo, partido1, partido2, equipoGanador1, equipoGanador2);
 
+
+
+
+
+
+        System.out.println("Resultado del primer partido: ");
         System.out.println(partido1.toString());
+        System.out.println("El equipo ganador es: ");
+        System.out.println(resultado[0] + "\n \n \n ");
+
+        System.out.println("Resultado del segundo partido: ");
         System.out.println(partido2.toString());
+        System.out.println("El equipo ganador es: ");
+        System.out.println(resultado[1]);
+
 
 
     }
 
-    public static void leerArchivo(String archivo, Partido partido1, Partido partido2) {
+    public static String[] leerArchivo(String archivo, Partido partido1, Partido partido2, String equipoGanador1, String equipoGanador2) {
+
 
         BufferedReader br = null;
 
         String linea = "";
         String separador = ",";
 
+        String[] resultado = new String[0];
         try {
             br = new BufferedReader(new FileReader(archivo));
 
@@ -53,6 +71,25 @@ public class Main {
             partido2.setGolesEquipo2(Integer.parseInt(texto[2]));
             partido2.setEquipo2(texto[3]);
 
+            if (partido1.getGolesEquipo1() > partido1.getGolesEquipo2()) {
+                equipoGanador1 = partido1.getEquipo1();
+            } else if (partido1.getGolesEquipo1() < partido1.getGolesEquipo2()) {
+                equipoGanador1 = partido1.getEquipo2();
+            }else if (partido1.getGolesEquipo1() == partido1.getGolesEquipo2()){
+                equipoGanador1 = "Empate ";
+            }
+
+
+            if (partido2.getGolesEquipo1() > partido2.getGolesEquipo2()) {
+                equipoGanador2 = partido2.getEquipo1();
+            } else if (partido2.getGolesEquipo1() < partido2.getGolesEquipo2()) {
+                equipoGanador2 = partido2.getEquipo2();
+            } else if (partido2.getGolesEquipo1() == partido2.getGolesEquipo2()){
+                equipoGanador2 = "Empate ";
+            }
+            resultado = new String[]{equipoGanador1, equipoGanador2};
+
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -66,6 +103,8 @@ public class Main {
                 }
             }
         }
+
+        return resultado;
     }
 
 }
